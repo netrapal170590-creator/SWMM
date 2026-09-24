@@ -5,6 +5,7 @@ import os
 import pytest
 from playwright.sync_api import Page
 
+from config.config import HEADLESS
 from pages.home_page import HomePage
 
 
@@ -15,7 +16,7 @@ def base_url() -> str:
 
 @pytest.fixture(scope="session")
 def browser_type_launch_args() -> dict:
-    return {"headless": os.getenv("HEADLESS", "true").lower() == "true"}
+    return {"headless": HEADLESS}
 
 
 @pytest.fixture

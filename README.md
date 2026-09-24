@@ -1,16 +1,18 @@
-# Basic Pytest + Playwright Framework
+# Basic Pytest + Playwright Project
 
 ## Structure
 
 ```text
-pages/          Page objects
+pages/          Page objects and page actions
 tests/          Test cases
-conftest.py     Shared browser fixtures
+report/         Test report output folder
+config/         URL and runtime settings
+conftest.py     Shared Playwright fixtures
 pytest.ini      Pytest settings
 requirements.txt
 ```
 
-## Install
+## First-time setup
 
 ```powershell
 python -m venv .venv
@@ -19,19 +21,38 @@ python -m pip install -r requirements.txt
 python -m playwright install
 ```
 
-## Run
+If PowerShell blocks activation, run this first in the same terminal:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
+```
+
+## Run tests
 
 ```powershell
 pytest
 ```
 
-The default application URL is `http://172.16.40.161/landing`. Override it
-before running tests when needed:
+The default URL is `http://172.16.40.161/landing`.
+
+For the login test, set the password only in the terminal:
 
 ```powershell
-$env:BASE_URL = "http://localhost:8000"
-$env:HEADLESS = "false"
-pytest -v
+$env:APP_USERNAME = "ADMIN"
+$env:APP_PASSWORD = "your-password"
+pytest tests/test_login.py -v
 ```
 
-Create new page objects in `pages` and test cases in `tests`.
+Do not save passwords in Python files or commit them to GitHub.
+
+## Add a new test
+
+1. Add a page class in `pages`.
+2. Add a test file in `tests`.
+3. Run the test with `pytest tests/test_name.py -v`.
+
+Use Playwright Codegen to find selectors:
+
+```powershell
+playwright codegen http://172.16.40.161/landing
+```
