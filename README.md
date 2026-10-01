@@ -33,7 +33,7 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
 pytest
 ```
 
-The default URL is `http://172.16.40.161/landing`.
+The default URL is `http://172.16.40.162/landing`, and the default username is `ADMIN`.
 
 For the login test, set the password only in the terminal:
 
@@ -54,5 +54,5 @@ Do not save passwords in Python files or commit them to GitHub.
 Use Playwright Codegen to find selectors:
 
 ```powershell
-playwright codegen http://172.16.40.161/landing
+playwright codegen http://172.16.40.162/landing
 ```

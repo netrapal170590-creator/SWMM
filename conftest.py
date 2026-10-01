@@ -1,17 +1,15 @@
 """Shared Playwright fixtures."""
 
-import os
-
 import pytest
 from playwright.sync_api import Page
 
-from config.config import HEADLESS
+from config.config import BASE_URL, HEADLESS
 from pages.home_page import HomePage
 
 
 @pytest.fixture(scope="session")
 def base_url() -> str:
-    return os.getenv("BASE_URL", "http://172.16.40.161/landing").rstrip("/")
+    return BASE_URL
 
 
 @pytest.fixture(scope="session")
